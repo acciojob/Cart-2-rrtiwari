@@ -1,11 +1,6 @@
-import React, { useContext } from "react";
-import { CartContext } from "./App";
+import React from "react";
 
-function Navbar() {
-  const { state } = useContext(CartContext);
-  // Cypress expects the number of items, not total quantity
-  const totalItems = state.cart.length;
-
+function Navbar({ totalItems }) {
   return (
     <nav className="navbar">
       <h1>useReducer</h1>
