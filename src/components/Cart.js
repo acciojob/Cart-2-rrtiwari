@@ -41,7 +41,7 @@ function Cart({ cart, dispatch, totalAmount }) {
           ))}
         </div>
 
-        <h2 id="cart-total-amount">Total: ${totalAmount}</h2>
+        <h2 id="cart-total-amount">Total: ${Math.round(totalAmount)}</h2>
 
         <button
           id="clear-all-cart"
