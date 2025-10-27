@@ -9,16 +9,14 @@ const CartContext = createContext();
 function App() {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
-  const totalItems = state.cart.length;
-  const totalAmount = state.cart.reduce(
-    (acc, item) => acc + item.price * item.quantity,
-    0
-  );
+  const totalAmount = state.cart
+    .reduce((acc, item) => acc + item.price * item.quantity, 0)
+    .toFixed(2);
 
   return (
     <CartContext.Provider value={{ state, dispatch }}>
       <div id="main">
-        <Navbar totalItems={totalItems} />
+        <Navbar />
         <Cart cart={state.cart} dispatch={dispatch} totalAmount={totalAmount} />
       </div>
     </CartContext.Provider>

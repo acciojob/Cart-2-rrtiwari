@@ -3,7 +3,10 @@ import { CartContext } from "./App";
 
 function Navbar() {
   const { state } = useContext(CartContext);
-  const totalItems = state.cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalItems = state.cart.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
 
   return (
     <nav className="navbar">
@@ -14,5 +17,3 @@ function Navbar() {
 }
 
 export default Navbar;
-
-
