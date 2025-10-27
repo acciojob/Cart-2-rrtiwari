@@ -1,7 +1,7 @@
 import React, { useReducer, createContext } from "react";
 import Navbar from "./Navbar";
 import Cart from "./Cart";
-import { cartReducer, initialState } from "./cartReducer";
+import { cartReducer, initialState } from "./CartReducer";
 import "../styles/App.css"
 
 const CartContext = createContext();
