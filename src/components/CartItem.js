@@ -4,11 +4,11 @@ import { CartContext } from "./App";
 function CartItem({ item }) {
   const { dispatch } = useContext(CartContext);
 
-  function increase() {
+  function increment() {
     dispatch({ type: "INCREMENT", payload: item.id });
   }
 
-  function decrease() {
+  function decrement() {
     dispatch({ type: "DECREMENT", payload: item.id });
   }
 
@@ -18,16 +18,14 @@ function CartItem({ item }) {
 
   return (
     <div className="cart-item">
+      <p>{item.name}</p>
+      <p id={`cart-item-price-${item.id}`}>${item.price}</p>
       <div>
-        <h3>{item.name}</h3>
-        <p id={`cart-item-price-${item.id}`}>${item.price}</p>
-      </div>
-      <div className="controls">
-        <button id={`decrement-btn-${item.id}`} onClick={decrease}>
+        <button id={`decrement-btn-${item.id}`} onClick={decrement}>
           -
         </button>
         <span id={`cart-amount-${item.id}`}>{item.quantity}</span>
-        <button id={`increment-btn-${item.id}`} onClick={increase}>
+        <button id={`increment-btn-${item.id}`} onClick={increment}>
           +
         </button>
         <button id={`cart-item-remove-${item.id}`} onClick={removeItem}>
