@@ -1,7 +1,7 @@
 export const initialState = {
   cart: [
     { id: 1, name: "Apple iPhone 15", price: 999, quantity: 1 },
-    { id: 2, name: "Samsung Galaxy S24", price: 899, quantity: 2 },
+    { id: 2, name: "Samsung Galaxy S24", price: 899, quantity: 1 },
     { id: 3, name: "Google Pixel 8", price: 799, quantity: 1 },
   ],
 };
