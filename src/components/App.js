@@ -13,7 +13,7 @@ function App() {
   const totalAmount = state.cart.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
-  );
+  ).toFixed(2);
 
   return (
     <CartContext.Provider value={{ state, dispatch }}>
