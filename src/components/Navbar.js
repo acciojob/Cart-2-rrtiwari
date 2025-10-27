@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "./App";
 
-function Navbar({ totalItems }) {
+function Navbar() {
+  const { state } = useContext(CartContext);
+  const totalItems = state.cart.reduce((acc, item) => acc + item.quantity, 0);
+
   return (
     <nav className="navbar">
       <h1>useReducer</h1>
@@ -10,3 +14,4 @@ function Navbar({ totalItems }) {
 }
 
 export default Navbar;
+
