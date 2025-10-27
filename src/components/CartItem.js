@@ -30,7 +30,9 @@ function CartItem({ item }) {
         <button id={`increment-btn-${item.id}`} onClick={increase}>
           +
         </button>
-        <button onClick={removeItem}>Remove</button>
+        <button id={`cart-item-remove-${item.id}`} onClick={removeItem}>
+          Remove
+        </button>
       </div>
     </div>
   );
