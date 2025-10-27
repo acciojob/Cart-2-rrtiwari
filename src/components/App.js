@@ -18,7 +18,11 @@ function App() {
     <CartContext.Provider value={{ state, dispatch }}>
       <div id="main">
         <Navbar totalItems={totalItems} />
-        <Cart cart={state.cart} dispatch={dispatch} totalAmount={totalAmount} />
+        <Cart
+          cart={state.cart}
+          dispatch={dispatch}
+          totalAmount={totalAmount}
+        />
       </div>
     </CartContext.Provider>
   );
@@ -26,3 +30,4 @@ function App() {
 
 export { CartContext };
 export default App;
+
