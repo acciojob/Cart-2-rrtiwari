@@ -1,18 +1,19 @@
 import React, { useReducer, createContext } from "react";
 import Navbar from "./Navbar";
 import Cart from "./Cart";
-import { cartReducer, initialState } from "./CartReducer";
+import { cartReducer, initialState } from "./cartReducer";
 import "../styles/App.css";
 
-const CartContext = createContext();
+export const CartContext = createContext();
 
 function App() {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
   const totalItems = state.cart.reduce((acc, item) => acc + item.quantity, 0);
-  const totalAmount = state.cart
-    .reduce((acc, item) => acc + item.price * item.quantity, 0)
-    .toFixed(2);
+  const totalAmount = state.cart.reduce(
+    (acc, item) => acc + item.price * item.quantity,
+    0
+  );
 
   return (
     <CartContext.Provider value={{ state, dispatch }}>
@@ -24,5 +25,4 @@ function App() {
   );
 }
 
-export { CartContext };
 export default App;
