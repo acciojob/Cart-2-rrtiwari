@@ -3,10 +3,8 @@ import { CartContext } from "./App";
 
 function Navbar() {
   const { state } = useContext(CartContext);
-  const totalItems = state.cart.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
+  // Cypress expects the number of items, not total quantity
+  const totalItems = state.cart.length;
 
   return (
     <nav className="navbar">
@@ -17,3 +15,4 @@ function Navbar() {
 }
 
 export default Navbar;
+
