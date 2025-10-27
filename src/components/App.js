@@ -1,28 +1,24 @@
-import React, { createContext, useReducer } from "react";
+import React, { useReducer, createContext } from "react";
 import Navbar from "./Navbar";
 import Cart from "./Cart";
-import { cartReducer, initialState } from "./CartReducer";
-import "../styles/App.css";
+import { cartReducer, initialState } from "./cartReducer";
+import "../styles/App.css"
 
 const CartContext = createContext();
 
 function App() {
   const [state, dispatch] = useReducer(cartReducer, initialState);
 
-  const totalItems = state.cart.reduce(
-    (total, item) => total + item.quantity,
-    0
-  );
-  const totalAmount = state.cart.reduce(
-    (total, item) => total + item.quantity * item.price,
-    0
-  );
+  const totalItems = state.cart.reduce((acc, item) => acc + item.quantity, 0);
+  const totalAmount = state.cart
+    .reduce((acc, item) => acc + item.price * item.quantity, 0)
+    .toFixed(2);
 
   return (
-    <CartContext.Provider value={{ state, dispatch, totalItems, totalAmount }}>
+    <CartContext.Provider value={{ state, dispatch }}>
       <div id="main">
-        <Navbar />
-        <Cart />
+        <Navbar totalItems={totalItems} />
+        <Cart cart={state.cart} dispatch={dispatch} totalAmount={totalAmount} />
       </div>
     </CartContext.Provider>
   );
