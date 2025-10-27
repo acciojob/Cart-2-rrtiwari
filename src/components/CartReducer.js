@@ -1,42 +1,66 @@
 export const initialState = {
   cart: [
-    { id: 1, name: "Apple iPhone 15", price: 999, quantity: 1 },
-    { id: 2, name: "Samsung Galaxy S24", price: 899, quantity: 1 },
-    { id: 3, name: "Realme Narzo 20", price: 599, quantity: 1 }
+    {
+      id: 1,
+      title: "Samsung Galaxy S7",
+      price: 599.99,
+      img: "https://res.cloudinary.com/diqqf3eq2/image/upload/v1583368215/phone-2_ohtt5s.png",
+      amount: 1,
+    },
+    {
+      id: 2,
+      title: "google pixel ",
+      price: 499.99,
+      img: "https://res.cloudinary.com/diqqf3eq2/image/upload/v1583371867/phone-1_gvesln.png",
+      amount: 1,
+    },
+    {
+      id: 3,
+      title: "Xiaomi Redmi Note 2",
+      price: 699.99,
+      img: "https://res.cloudinary.com/diqqf3eq2/image/upload/v1583368224/phone-3_h2s6fo.png",
+      amount: 1,
+    },
   ],
 };
 
 export function cartReducer(state, action) {
-  if (action.type === "INCREMENT") {
-    const updatedCart = state.cart.map((item) => {
-      if (item.id === action.payload)
-        return { ...item, quantity: item.quantity + 1 };
-      return item;
-    });
-    return { ...state, cart: updatedCart };
-  }
+  switch (action.type) {
+    case "INCREMENT":
+      return {
+        ...state,
+        cart: state.cart.map((item) =>
+          item.id === action.payload
+            ? { ...item, amount: item.amount + 1 }
+            : item
+        ),
+      };
 
-  if (action.type === "DECREMENT") {
-    const updatedCart = state.cart
-      .map((item) => {
-        if (item.id === action.payload)
-          return { ...item, quantity: item.quantity - 1 };
-        return item;
-      })
-      .filter((item) => item.quantity > 0);
-    return { ...state, cart: updatedCart };
-  }
+    case "DECREMENT":
+      return {
+        ...state,
+        cart: state.cart
+          .map((item) =>
+            item.id === action.payload
+              ? { ...item, amount: item.amount - 1 }
+              : item
+          )
+          .filter((item) => item.amount > 0),
+      };
 
-  if (action.type === "REMOVE_ITEM") {
-    const filteredCart = state.cart.filter(
-      (item) => item.id !== action.payload
-    );
-    return { ...state, cart: filteredCart };
-  }
+    case "REMOVE_ITEM":
+      return {
+        ...state,
+        cart: state.cart.filter((item) => item.id !== action.payload),
+      };
 
-  if (action.type === "CLEAR_CART") {
-    return { ...state, cart: [] };
-  }
+    case "CLEAR_CART":
+      return {
+        ...state,
+        cart: [],
+      };
 
-  return state;
+    default:
+      return state;
+  }
 }
